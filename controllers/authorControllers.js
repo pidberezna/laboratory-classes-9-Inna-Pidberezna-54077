@@ -28,8 +28,8 @@ const updateAuthor = async (req, res) => {
       id,
       { firstName, lastName },
       {
-        new: true, // zwróć zaktualizowany dokument
-        runValidators: true, // uruchom walidację
+        new: true,
+        runValidators: true,
       }
     );
 
@@ -70,7 +70,7 @@ const updateAuthor = async (req, res) => {
   }
 };
 
-// POST /api/authors - dodanie autora (bonus)
+// POST /api/authors - dodanie autora
 const createAuthor = async (req, res) => {
   try {
     const { firstName, lastName } = req.body;

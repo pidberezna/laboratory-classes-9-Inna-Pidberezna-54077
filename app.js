@@ -13,15 +13,12 @@ const MONGO_URI = process.env.MONGO_URI;
 
 const app = express();
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 
-// Routes
 app.use('/api/books', bookRoutes);
 app.use('/api/authors', authorRoutes);
 
-// Health check endpoint
 app.get('/api/health', (req, res) => {
   res.status(200).json({
     success: true,
@@ -30,7 +27,6 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// 404 handler
 app.use('*', (req, res) => {
   res.status(404).json({
     success: false,
@@ -38,7 +34,6 @@ app.use('*', (req, res) => {
   });
 });
 
-// Error handling middleware
 app.use((error, req, res, next) => {
   console.error(error.stack);
   res.status(500).json({
@@ -48,7 +43,6 @@ app.use((error, req, res, next) => {
   });
 });
 
-// Database connection and server start
 const startServer = async () => {
   try {
     if (!MONGO_URI) {
@@ -70,7 +64,6 @@ const startServer = async () => {
   }
 };
 
-// Handle graceful shutdown
 process.on('SIGINT', async () => {
   console.log('\n🛑 Shutting down server...');
   try {

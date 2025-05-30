@@ -24,7 +24,6 @@ const createBook = async (req, res) => {
   try {
     const { title, year, author } = req.body;
 
-    // Sprawdź czy autor istnieje
     const existingAuthor = await Author.findById(author);
     if (!existingAuthor) {
       return res.status(404).json({

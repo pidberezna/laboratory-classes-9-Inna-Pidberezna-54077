@@ -18,12 +18,10 @@ const authorSchema = new mongoose.Schema(
   }
 );
 
-// Virtual for full name
 authorSchema.virtual('fullName').get(function () {
   return `${this.firstName} ${this.lastName}`;
 });
 
-// Ensure virtual fields are serialized
 authorSchema.set('toJSON', {
   virtuals: true,
 });
